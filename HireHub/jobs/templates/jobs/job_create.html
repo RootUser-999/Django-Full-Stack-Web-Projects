@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="create-job-hero py-7" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); min-height: 100vh; display: flex; align-items: center;">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+
+                <!-- HEADER -->
+                <div class="text-center mb-7 fade-in-up">
+                    <span class="badge bg-gradient-primary text-white px-5 py-3 fw-bold fs-5 shadow-lg mb-4">
+                        <i class="fas fa-plus-circle me-2"></i>Create New Job
+                    </span>
+
+                    <h1 class="display-4 fw-bold mb-3" style="color:#1e293b;">
+                        Post Your <span class="gradient-text">Job Opportunity</span>
+                    </h1>
+
+                    <p class="lead text-muted">
+                        Reach thousands of qualified candidates instantly.
+                    </p>
+                </div>
+
+                <!-- FORM CARD -->
+                <div class="form-card bg-white shadow-lg rounded-5 overflow-hidden">
+
+                    <!-- HEADER -->
+                    <div class="form-header bg-gradient-primary text-white p-4">
+                        <h4 class="fw-bold mb-1">Job Details</h4>
+                        <small>Fill out the information below</small>
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="form-body p-5">
+
+                        <form method="POST" novalidate>
+                            {% csrf_token %}
+
+                            <!-- TITLE -->
+                            <div class="mb-4">
+                                
+                                <div class="input-wrapper">
+                                    {{ form.title }}
+                                    <i class="fas fa-briefcase input-icon"></i>
+                                </div>
+                                {% if form.title.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.title.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- COMPANY -->
+                            <div class="mb-4">
+                                
+                                <div class="input-wrapper">
+                                    {{ form.company }}
+                                    <i class="fas fa-building input-icon"></i>
+                                </div>
+                                {% if form.company.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.company.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- LOCATION -->
+                            <div class="mb-4">
+                                
+                                <div class="input-wrapper">
+                                    {{ form.location }}
+                                    <i class="fas fa-map-marker-alt input-icon"></i>
+                                </div>
+                                {% if form.location.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.location.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- SALARY -->
+                            <div class="mb-4">
+                                
+                                <div class="input-wrapper">
+                                    {{ form.salary }}
+                                    <i class="fas fa-dollar-sign input-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- DESCRIPTION -->
+                            <div class="mb-4">
+                                
+                                <div class="input-wrapper">
+                                    {{ form.description }}
+                                </div>
+                                {% if form.description.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.description.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- BUTTONS -->
+                            <div class="d-flex gap-3">
+                               <a href="{% url 'job_success' %}" class="btn btn-primary w-100 py-3 fw-bold">
+    <i class="fas fa-rocket me-2"></i>Post Job
+</a>
+
+                                <a href="{% url 'job_success' %}" class="btn btn-light border px-4">
+    <i class="fas fa-arrow-left me-2"></i>Back
+</a>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

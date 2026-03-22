@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-6 bg-light" style="min-height: 100vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+
+                <!-- Header -->
+                <div class="text-center mb-5">
+                    <h1 class="fw-bold mb-3">Submit Your Application</h1>
+                    <p class="text-muted">
+                        Upload your resume and apply for your desired role in seconds.
+                    </p>
+                </div>
+
+                <!-- Card -->
+                <div class="card shadow-lg border-0 rounded-4">
+
+                    <!-- Messages -->
+                    {% if messages %}
+                        <div class="p-3">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if error_message %}
+                        <div class="alert alert-danger m-3">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Form -->
+                    <div class="card-body p-4 p-lg-5">
+                        <form method="post" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+
+                            <!-- Name & Email -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Full Name *</label>
+                                    {{ form.applicant_name }}
+                                    {% if form.applicant_name.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {{ form.applicant_name.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Email *</label>
+                                    {{ form.applicant_email }}
+                                    {% if form.applicant_email.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {{ form.applicant_email.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Resume -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Upload Resume *</label>
+                                {{ form.resume }}
+                                <small class="text-muted d-block mt-1">
+                                    PDF, DOC, DOCX (Max 5MB)
+                                </small>
+                                {% if form.resume.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ form.resume.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Cover Letter -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Cover Letter (Optional)</label>
+                                {{ form.cover_letter }}
+                                {% if form.cover_letter.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ form.cover_letter.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="d-grid gap-3 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg fw-semibold">
+                                    Submit Application
+                                </button>
+
+                                <a href="{% url 'jobs' %}" class="btn btn-outline-secondary">
+                                    Back to Jobs
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

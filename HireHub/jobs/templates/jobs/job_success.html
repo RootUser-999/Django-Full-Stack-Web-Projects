@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center min-vh-100 py-5">
+        <div class="col-lg-6 col-xl-5 col-xxl-4">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="card-body p-5 text-center">
+                    <!-- Success Icon -->
+                    <div class="mb-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center p-4 mx-auto" style="width: 100px; height: 100px;">
+                            <i class="fas fa-check-circle text-success fs-1"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Title -->
+                    <h1 class="display-5 fw-bold text-dark mb-3 lh-sm">
+                        Job Posted Successfully
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p class="lead text-secondary mb-4">
+                        Your job listing has been successfully published and is now live on our platform. 
+                        Top candidates will start seeing it immediately.
+                    </p>
+                    
+                    <!-- Status Badge -->
+                    <div class="mb-4">
+                        <span class="badge bg-success bg-opacity-75 px-4 py-2 fs-6 fw-semibold rounded-pill">
+                            <i class="fas fa-circle-check me-1"></i>
+                            Status: Live & Active
+                        </span>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-3 d-md-flex justify-content-center">
+                        <a href="{% url 'jobs' %}" class="btn btn-primary btn-lg px-5 py-2 fw-semibold rounded-pill shadow-sm">
+                            <i class="fas fa-list me-2"></i>
+                            View All Jobs
+                        </a>
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-lg px-5 py-2 fw-semibold rounded-pill">
+                            <i class="fas fa-tachometer-alt me-2"></i>
+                            Dashboard
+                        </a>
+                    </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="mt-5 pt-4 border-top border-light">
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>
+                            Posted at {{ post_time|default:"Just now" }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

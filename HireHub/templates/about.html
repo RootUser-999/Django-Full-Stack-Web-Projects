@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- About Section -->
+<section class="about-section py-8 py-lg-12 bg-white position-relative overflow-hidden">
+    <!-- Subtle Background Pattern -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-light opacity-10"></div>
+    
+    <div class="container position-relative z-2">
+        <div class="row align-items-center g-5 g-lg-0">
+            <!-- About Content -->
+            <div class="col-lg-6 order-lg-1">
+                <div class="about-content">
+                    <!-- Section Badge -->
+                    <div class="badge bg-primary text-white mb-4 px-4 py-2 rounded-pill fw-semibold fs-6">
+                        <i class="fas fa-star me-2"></i>
+                        About HireHub
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="display-4 fw-bold mb-4 lh-1-2 text-dark">
+                        Connecting <span class="text-primary">Talent</span> 
+                        with <span class="text-primary">Opportunity</span>
+                    </h1>
+                    
+                    <!-- Main Description -->
+                    <p class="lead fs-5 text-muted mb-5 lh-lg">
+                        HireHub is the premier platform revolutionizing recruitment. 
+                        We empower <strong>job seekers</strong> to showcase their skills and 
+                        enable <strong>employers</strong> to discover exceptional talent effortlessly.
+                    </p>
+                    
+                    <!-- Key Features -->
+                    <div class="row g-4 mb-6">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start gap-3 p-3 rounded-3 hover-lift">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 48px; height: 48px;">
+                                    <i class="fas fa-bolt fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold text-dark mb-1">Lightning Fast</h5>
+                                    <p class="mb-0 text-muted small">Matches in seconds, not weeks</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start gap-3 p-3 rounded-3 hover-lift">
+                                <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 48px; height: 48px;">
+                                    <i class="fas fa-shield-alt fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold text-dark mb-1">Secure & Verified</h5>
+                                    <p class="mb-0 text-muted small">100% verified profiles</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start gap-3 p-3 rounded-3 hover-lift">
+                                <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 48px; height: 48px;">
+                                    <i class="fas fa-chart-line fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold text-dark mb-1">Proven Results</h5>
+                                    <p class="mb-0 text-muted small">95% placement success</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start gap-3 p-3 rounded-3 hover-lift">
+                                <div class="bg-info text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 48px; height: 48px;">
+                                    <i class="fas fa-users fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold text-dark mb-1">Global Network</h5>
+                                    <p class="mb-0 text-muted small">50K+ active professionals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="d-flex flex-column flex-lg-row gap-3">
+                        <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-5 py-3 shadow-lg border-0 fw-semibold">
+                            <i class="fas fa-user-plus me-2"></i>
+                            Join HireHub Today
+                        </a>
+                        <a href="{% url 'jobs' %}" class="btn btn-outline-primary btn-lg px-5 py-3 fw-semibold hover-lift">
+                            <i class="fas fa-briefcase me-2"></i>
+                            Browse Jobs
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About Image -->
+            <div class="col-lg-6 order-lg-2 text-center text-lg-end">
+                <div class="about-image-wrapper position-relative mx-auto mx-lg-0">
+                    {% comment %} <img src="{% static 'images/hero-illustration.png' %}"  {% endcomment %}
+                         alt="HireHub team building connections between employers and talented professionals" 
+                         class="img-fluid about-illustration rounded-5 shadow-xl"
+                         loading="eager"
+                         width="550"
+                         height="450">
+                    
+                    <!-- Decorative Elements -->
+                    <div class="position-absolute top-10% start-10% bg-primary opacity-10 rounded-circle" 
+                         style="width: 120px; height: 120px;"></div>
+                    <div class="position-absolute bottom-10% end-10% bg-success opacity-10 rounded-circle" 
+                         style="width: 80px; height: 80px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Professional About Section Styles */
+.about-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+}
+
+.about-illustration {
+    max-width: 100%;
+    height: auto;
+    border-radius: 24px !important;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+.about-illustration:hover {
+    transform: scale(1.02);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.2);
+}
+
+.about-image-wrapper {
+    padding: 3rem 0;
+}
+
+.shadow-xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .about-content {
+        text-align: center;
+    }
+    
+    .about-image-wrapper {
+        padding: 2rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem !important;
+    }
+    
+    .about-illustration {
+        border-radius: 16px !important;
+    }
+}
+</style>
+{% endblock %}

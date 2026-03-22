@@ -1,0 +1,403 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Success Hero Section -->
+<section class="success-hero min-vh-100 d-flex align-items-center" 
+         style="background: linear-gradient(135deg, #10b98115 0%, #05966925 50%, #04785735 100%); position: relative; overflow: hidden;">
+    <!-- Animated Background Elements -->
+    <div class="success-decoration-1 position-absolute top-10 start-10" style="z-index: 1; animation: floatUp 4s ease-in-out infinite;">
+        <div class="circle-gradient bg-success opacity-20 rounded-full" style="width: 150px; height: 150px;"></div>
+    </div>
+    <div class="success-decoration-2 position-absolute top-20 end-20" style="z-index: 1; animation: floatUp 6s ease-in-out infinite reverse;">
+        <div class="circle-gradient bg-emerald opacity-15 rounded-full" style="width: 200px; height: 200px;"></div>
+    </div>
+    <div class="success-decoration-3 position-absolute bottom-20 start-20" style="z-index: 1; animation: floatUp 5s ease-in-out infinite 2s;">
+        <div class="circle-gradient bg-teal opacity-10 rounded-full" style="width: 120px; height: 120px;"></div>
+    </div>
+
+    <div class="container position-relative z-2">
+        <div class="row justify-content-center text-center">
+            <div class="col-xl-8 col-lg-10 col-md-12">
+                <!-- Success Animation Container -->
+                <div class="success-animation mb-6" style="height: 200px;">
+                    <div class="success-checkmark-container">
+                        <svg class="checkmark" viewBox="0 0 52 52" style="animation: checkmarkDraw 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157"/>
+                            <path class="checkmark-check" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-dasharray="48" stroke-dashoffset="48" d="M14 27l7 7 16-17"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Main Success Message -->
+                <div class="success-content fade-in-up">
+                    <div class="success-badge mb-5">
+                        <span class="badge bg-gradient-success text-white px-6 py-4 fw-bold fs-4 shadow-2xl rounded-pill">
+                            <i class="fas fa-check-circle me-3 fs-1"></i>
+                            Application Submitted!
+                        </span>
+                    </div>
+                    
+                    <h1 class="display-3 fw-bold mb-4 lh-sm gradient-text" style="color: #065f46;">
+                        Congratulations! 🎉
+                    </h1>
+                    
+                    <p class="lead fs-4 text-success fw-semibold mb-5 lh-lg">
+                        Your application has been successfully submitted. 
+                        Our team will review it shortly and you'll hear back within 48 hours.
+                    </p>
+
+                    <!-- Next Steps -->
+                    <div class="next-steps-card bg-white shadow-xl rounded-5 p-7 mb-7 border-0 position-relative overflow-hidden">
+                        <div class="next-steps-bg"></div>
+                        <div class="row g-4">
+                            <div class="col-md-4 text-center">
+                                <div class="step-icon bg-gradient-success text-white rounded-4 p-4 shadow-lg mx-auto mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-eye fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">Review</h5>
+                                <p class="text-muted small">Our team reviews</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="step-icon bg-gradient-primary text-white rounded-4 p-4 shadow-lg mx-auto mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-phone fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">Interview</h5>
+                                <p class="text-muted small">Phone screening</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="step-icon bg-gradient-info text-white rounded-4 p-4 shadow-lg mx-auto mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-briefcase fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">Offer</h5>
+                                <p class="text-muted small">Final decision</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Information -->
+                    <div class="info-grid row g-4 mb-7">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="info-card h-100 bg-white shadow-lg rounded-4 p-5 border-0 hover-lift">
+                                <div class="info-icon mb-3">
+                                    <i class="fas fa-clock text-warning fs-1 opacity-75"></i>
+                                </div>
+                                <h4 class="h5 fw-bold mb-3 text-primary">Response Time</h4>
+                                <p class="text-muted mb-0">Within <strong>48 hours</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="info-card h-100 bg-white shadow-lg rounded-4 p-5 border-0 hover-lift">
+                                <div class="info-icon mb-3">
+                                    <i class="fas fa-bell text-success fs-1 opacity-75"></i>
+                                </div>
+                                <h4 class="h5 fw-bold mb-3 text-primary">Notifications</h4>
+                                <p class="text-muted mb-0">Email & Dashboard alerts</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="info-card h-100 bg-white shadow-lg rounded-4 p-5 border-0 hover-lift">
+                                <div class="info-icon mb-3">
+                                    <i class="fas fa-shield-alt text-info fs-1 opacity-75"></i>
+                                </div>
+                                <h4 class="h5 fw-bold mb-3 text-primary">Secure</h4>
+                                <p class="text-muted mb-0">Your data is encrypted</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="cta-buttons d-flex flex-column flex-lg-row gap-3 justify-content-center align-items-center">
+                        <a href="{% url 'dashboard' %}" class="btn btn-success-gradient btn-lg px-6 py-4 shadow-xl fw-bold fs-5 lift-animation">
+                            <i class="fas fa-tachometer-alt me-3"></i>
+                            Go to Dashboard
+                        </a>
+                        <a href="{% url 'jobs' %}" class="btn btn-outline-primary btn-lg px-6 py-4 shadow-lg fw-bold fs-5">
+                            <i class="fas fa-briefcase me-3"></i>
+                            Find More Jobs
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators mt-8 pt-6 border-top border-success border-opacity-25">
+                        <div class="row g-4 text-center">
+                            <div class="col-md-3 col-6">
+                                <div class="trust-item">
+                                    <div class="fs-1 text-success mb-2"><i class="fas fa-users"></i></div>
+                                    <div class="fw-bold fs-5 text-primary">10K+</div>
+                                    <div class="text-muted small">Applications</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="trust-item">
+                                    <div class="fs-1 text-primary mb-2"><i class="fas fa-briefcase"></i></div>
+                                    <div class="fw-bold fs-5 text-primary">500+</div>
+                                    <div class="text-muted small">Jobs</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="trust-item">
+                                    <div class="fs-1 text-warning mb-2"><i class="fas fa-star"></i></div>
+                                    <div class="fw-bold fs-5 text-primary">4.9⭐</div>
+                                    <div class="text-muted small">Rating</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="trust-item">
+                                    <div class="fs-1 text-info mb-2"><i class="fas fa-clock"></i></div>
+                                    <div class="fw-bold fs-5 text-primary">24h</div>
+                                    <div class="text-muted small">Avg Response</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+<style>
+/* Success Page Styles */
+.success-hero {
+    position: relative;
+}
+
+.success-decoration-1,
+.success-decoration-2,
+.success-decoration-3 {
+    animation: floatUp 6s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0%, 100% { 
+        transform: translateY(0px) scale(1); 
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.1); 
+        opacity: 0.8;
+    }
+}
+
+.success-checkmark-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.checkmark-circle {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 157;
+    stroke-width: 4;
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.checkmark-check {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 48;
+    stroke-width: 6;
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s;
+}
+
+.success-content {
+    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.next-steps-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.next-steps-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(16, 185, 129, 0.15);
+}
+
+.next-steps-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, transparent 100%);
+    z-index: 0;
+}
+
+.step-icon {
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 80px;
+}
+
+.step-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.info-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f1f5f9;
+}
+
+.hover-lift:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.btn-success-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-success-gradient:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+}
+
+.btn-primary-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border: none;
+}
+
+.btn-primary-gradient:hover {
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+}
+
+.lift-animation {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lift-animation:hover {
+    transform: translateY(-4px);
+}
+
+.trust-item {
+    transition: all 0.3s ease;
+}
+
+.trust-item:hover {
+    transform: translateY(-4px);
+}
+
+.trust-item .fs-1 {
+    background: linear-gradient(135deg, var(--primary-gradient));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .success-animation { height: 150px !important; }
+    .checkmark { width: 140px !important; height: 140px !important; }
+    .cta-buttons { flex-direction: column !important; }
+}
+
+/* Print Styles */
+@media print {
+    .success-hero { background: white !important; }
+    .shadow-xl, .shadow-lg, .shadow-2xl { box-shadow: none !important; }
+}
+</style>
+
+<script>
+// Success page animations and interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Trigger checkmark animation
+    setTimeout(() => {
+        const checkmarkCircle = document.querySelector('.checkmark-circle');
+        const checkmarkCheck = document.querySelector('.checkmark-check');
+        
+        if (checkmarkCircle) {
+            checkmarkCircle.style.strokeDashoffset = '0';
+        }
+        if (checkmarkCheck) {
+            setTimeout(() => {
+                checkmarkCheck.style.strokeDashoffset = '0';
+            }, 600);
+        }
+    }, 500);
+
+    // Staggered animations for cards
+    const cards = document.querySelectorAll('.info-card, .next-steps-card');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+
+    // Confetti effect (optional celebration)
+    function createConfetti() {
+        const colors = ['#10b981', '#059669', '#047857', '#065f46'];
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s linear forwards`;
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    }
+
+    // Trigger confetti after success animation
+    setTimeout(createConfetti, 1500);
+
+    // Add confetti CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Copy to clipboard functionality for sharing
+    const shareBtn = document.querySelector('.share-btn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                // Show copied feedback
+            });
+        });
+    }
+
+    // Auto-redirect to dashboard after 10 seconds (optional)
+    // setTimeout(() => {
+    //     window.location.href = "{% url 'dashboard' %}";
+    // }, 10000);
+});
+</script>

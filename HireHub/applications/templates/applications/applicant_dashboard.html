@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Dashboard Hero -->
+<section class="dashboard-hero py-6 bg-gradient-hero" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+    <div class="container">
+        <!-- Header -->
+        <div class="row align-items-center mb-6">
+            <div class="col-lg-8">
+                <div class="page-header fade-in-left">
+                    <span class="badge bg-gradient-primary text-white px-4 py-2 fw-semibold fs-6 mb-3">
+                        <i class="fas fa-list me-2"></i>My Applications ({{ applications.count }})
+                    </span>
+                    <h1 class="display-4 fw-bold mb-3 lh-sm gradient-text" style="color: #1e293b;">
+                        Your Job Applications
+                    </h1>
+                    <p class="lead text-muted fs-5">
+                        Track your applications, see statuses, and get notified about updates.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end fade-in-right">
+                <div class="quick-actions">
+                    <a href="{% url 'jobs' %}" class="btn btn-primary-gradient btn-lg px-5 py-3 shadow-lg me-3 mb-3 mb-lg-0">
+                        <i class="fas fa-search me-2"></i>Browse Jobs
+                    </a>
+                    <a href="{% url 'create_job' %}" class="btn btn-outline-primary btn-lg px-5 py-3 shadow-lg">
+                        <i class="fas fa-plus me-2"></i>Post Job
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="row g-4 mb-7">
+            <div class="col-xl-3 col-lg-6">
+                <div class="stat-card bg-white shadow-xl rounded-4 p-5 border-0 hover-lift text-center">
+                    <div class="stat-icon mb-3">
+                        <i class="fas fa-file-circle-check display-4 text-success"></i>
+                    </div>
+                    <div class="display-5 fw-bold text-success mb-1">{{ applications|length }}</div>
+                    <div class="h6 fw-semibold text-muted mb-0">Total Applications</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="stat-card bg-white shadow-xl rounded-4 p-5 border-0 hover-lift text-center">
+                    <div class="stat-icon mb-3">
+                        <i class="fas fa-clock display-4 text-warning"></i>
+                    </div>
+                    <div class="display-5 fw-bold text-warning mb-1">{{ applications|length|add:0 }}</div>
+                    <div class="h6 fw-semibold text-muted mb-0">Pending</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="stat-card bg-white shadow-xl rounded-4 p-5 border-0 hover-lift text-center">
+                    <div class="stat-icon mb-3">
+                        <i class="fas fa-phone display-4 text-info"></i>
+                    </div>
+                    <div class="display-5 fw-bold text-info mb-1">0</div>
+                    <div class="h6 fw-semibold text-muted mb-0">Interview</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="stat-card bg-white shadow-xl rounded-4 p-5 border-0 hover-lift text-center">
+                    <div class="stat-icon mb-3">
+                        <i class="fas fa-briefcase-check display-4 text-primary"></i>
+                    </div>
+                    <div class="display-5 fw-bold text-primary mb-1">0</div>
+                    <div class="h6 fw-semibold text-muted mb-0">Offers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Applications Grid -->
+<section class="py-8">
+    <div class="container">
+        <!-- Filters & Search -->
+        <div class="filters-section mb-6">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bg-white border-end-0 shadow-sm">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0 shadow-sm fs-6" 
+                               placeholder="Search applications..." id="searchInput">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <select class="form-select form-select-lg shadow-sm fs-6" id="statusFilter">
+                        <option>All Statuses</option>
+                        <option>Pending</option>
+                        <option>Reviewed</option>
+                        <option>Interview</option>
+                        <option>Offer</option>
+                        <option>Rejected</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <button class="btn btn-primary-gradient btn-lg w-100 shadow-lg" id="filterBtn">
+                        <i class="fas fa-filter me-2"></i>Filter
+                    </button>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-outline-secondary btn-lg px-4 shadow-sm" id="exportBtn">
+                            <i class="fas fa-download me-2"></i>Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications Grid -->
+        <div class="applications-grid row g-4" id="applicationsGrid">
+            {% for application in applications %}
+            <div class="col-xl-4 col-lg-6 col-md-6 application-item" 
+                 data-job="{{ application.job.title|lower }}"
+                 data-company="{{ application.job.company|lower }}"
+                 data-status="{{ application.status|lower }}"
+                 data-date="{{ application.applied_date|date:'Y-m-d' }}">
+                <div class="application-card h-100 position-relative overflow-hidden rounded-4 shadow-xl border-0 bg-white hover-lift">
+                    <!-- Status Badge -->
+                    <div class="status-badge position-absolute top-0 start-0 m-4 z-2">
+                        <span class="badge fw-semibold px-4 py-2 shadow-sm fs-6 {% if application.status == 'Pending' %}bg-warning-soft text-warning{% elif application.status == 'Interview' %}bg-info-soft text-info{% elif application.status == 'Offer' %}bg-success-soft text-success{% else %}bg-secondary-soft text-secondary{% endif %}">
+                            {{ application.status }}
+                        </span>
+                    </div>
+
+                    <!-- Card Header -->
+                    <div class="card-header p-5 pb-3 position-relative">
+                        <div class="job-logo position-absolute end-0 bottom-0 p-3 bg-white rounded-3 shadow-lg" style="width: 56px; height: 56px;">
+                            <i class="fas fa-building text-primary fs-2 opacity-75"></i>
+                        </div>
+                        <div>
+                            <h3 class="h4 fw-bold mb-2 lh-1 text-dark truncate-2">{{ application.job.title }}</h3>
+                            <h5 class="fw-semibold text-primary mb-2">{{ application.job.company }}</h5>
+                            <div class="d-flex align-items-center gap-3 text-muted small">
+                                <span><i class="fas fa-map-marker-alt me-1"></i>{{ application.job.location }}</span>
+                                <span><i class="fas fa-dollar-sign me-1"></i>{{ application.job.salary }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body p-5 pt-0">
+                        <!-- Timeline -->
+                        <div class="application-timeline mb-4">
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-primary"></div>
+                                <div class="timeline-content">
+                                    <small class="text-muted">Applied</small>
+                                    <div class="timeline-date">{{ application.applied_date|date:"M d, Y" }}</div>
+                                </div>
+                            </div>
+                            {% if application.status != 'Pending' %}
+                            <div class="timeline-item">
+                                <div class="timeline-dot bg-info"></div>
+                                <div class="timeline-content">
+                                    <small class="text-muted">{{ application.status|lower }}</small>
+                                    <div class="timeline-date">{{ application.updated_date|date:"M d, Y" }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="action-buttons">
+                            <a href="{% url 'job_detail' application.job.id %}" class="btn btn-outline-primary btn-sm shadow-sm me-2 mb-2">
+                                <i class="fas fa-eye me-1"></i>View Job
+                            </a>
+                            <button class="btn btn-outline-secondary btn-sm shadow-sm mb-2 copy-btn" data-job="{{ application.job.title }}">
+                                <i class="fas fa-copy me-1"></i>Copy Link
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hover Overlay -->
+                    <div class="card-overlay"></div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state bg-white rounded-5 shadow-xl p-8 text-center border-dashed">
+                    <div class="empty-icon mb-5">
+                        <i class="fas fa-inbox display-1 text-muted opacity-50"></i>
+                    </div>
+                    <h3 class="h2 fw-bold mb-4 text-muted">No applications yet</h3>
+                    <p class="lead text-muted mb-6">Your applications will appear here once you start applying to jobs.</p>
+                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                        <a href="{% url 'jobs' %}" class="btn btn-primary-gradient btn-lg px-6 py-3 shadow-xl fw-bold">
+                            <i class="fas fa-search me-2"></i>Find Jobs
+                        </a>
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg px-6 py-3 shadow-lg fw-bold">
+                            <i class="fas fa-tachometer-alt me-2"></i>View Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination (if needed) -->
+        {% if applications.has_other_pages %}
+        <div class="row mt-8">
+            <div class="col-12 text-center">
+                <nav aria-label="Applications pagination">
+                    <!-- Bootstrap pagination here -->
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
+
+<style>
+/* Applications Dashboard Styles */
+.bg-gradient-hero {
+    position
