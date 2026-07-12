@@ -1,0 +1,258 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero-section">
+
+    <!-- Animated Background -->
+
+    <div class="bg-blobs">
+
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+
+    </div>
+
+    <div class="container py-5">
+
+        <!-- Header -->
+
+        <div class="row justify-content-center mb-5">
+
+            <div class="col-lg-10 text-center">
+
+                <span class="hero-badge">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Prediction Complete
+
+                </span>
+
+                <h1 class="hero-title mt-4">
+
+                    Gemstone
+                    <span>Analysis</span>
+
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Our AI model has finished analyzing your image.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Uploaded Image -->
+
+            <div class="col-lg-5">
+
+                <div class="result-image-card">
+
+                    <div class="card-header-custom">
+
+                        <i class="bi bi-image me-2"></i>
+
+                        Uploaded Image
+
+                    </div>
+                    
+                    <img
+                        src="{{ image.gem_image.url }}"
+                        class="img-fluid result-image"
+                        alt="Uploaded Gemstone">
+
+                </div>
+
+            </div>
+
+
+            <!-- Right Column -->
+
+            <div class="col-lg-7">
+
+                <!-- Prediction -->
+
+                <div class="prediction-card">
+
+                    <span class="prediction-label">
+
+                        AI Prediction
+
+                    </span>
+
+                    <h2 class="prediction-name">
+
+                        {{ prediction }}
+
+                    </h2>
+
+                    <div class="confidence-box">
+
+                        <div class="confidence-top">
+
+                            <span>
+
+                                Confidence Score
+
+                            </span>
+
+                            <span>
+
+                                {{ confidence }}%
+
+                            </span>
+
+                        </div>
+
+                        <div class="progress custom-progress">
+
+                            <div
+                                class="progress-bar progress-bar-striped progress-bar-animated"
+                                role="progressbar"
+                                style="width: {{ confidence }}%;">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Prediction Table -->
+
+                <div class="prediction-table">
+
+                    <div class="table-header">
+
+                        <h4>
+
+                            AI Confidence Ranking
+
+                        </h4>
+
+                    </div>
+
+                    <div class="table-responsive">
+
+                        <table class="table align-middle mb-0">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+
+                                        Gemstone
+
+                                    </th>
+
+                                    <th class="text-end">
+
+                                        Probability
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            {% for gem, score in all_predictions.items %}
+
+                                <tr>
+
+                                    <td>
+
+                                        <i class="bi bi-gem me-2"></i>
+
+                                        {{ gem }}
+
+                                    </td>
+
+                                    <td class="text-end">
+
+                                        <span class="score-badge">
+
+                                            {{ score }}%
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Buttons -->
+
+        <div class="row mt-5">
+
+            <div class="col text-center">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="predict-btn me-3">
+
+                    <i class="bi bi-arrow-repeat me-2"></i>
+
+                    Analyze Another Image
+
+                </a>
+
+                <button
+                    onclick="window.print()"
+                    class="predict-btn mt-3">
+
+                    <i class="bi bi-printer me-2"></i>
+
+                    Print Report
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

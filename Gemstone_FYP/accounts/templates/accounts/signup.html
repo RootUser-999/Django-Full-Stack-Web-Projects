@@ -1,0 +1,161 @@
+{% extends 'core/base.html' %}
+{% block title %}User Sign Up{% endblock %}
+{% block extra_css %}
+
+<style>
+    body{
+        background:#f8f9fa;
+    }
+
+    .signup-wrapper{
+        min-height:90vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .signup-card{
+        width:100%;
+        max-width:650px;
+        border:none;
+        border-radius:18px;
+        box-shadow:0 10px 35px rgba(0,0,0,.12);
+    }
+
+    .signup-header{
+        background:linear-gradient(135deg,#0d6efd,#4f8ef7);
+        color:#fff;
+        padding:30px;
+        border-radius:18px 18px 0 0;
+        text-align:center;
+    }
+
+    .signup-header h2{
+        margin-bottom:8px;
+        font-weight:700;
+    }
+
+    .card-body{
+        padding:35px;
+    }
+
+    .form-label{
+        font-weight:600;
+        margin-bottom:6px;
+    }
+
+    .form-control{
+        border-radius:10px;
+        height:48px;
+    }
+
+    textarea.form-control{
+        height:90px;
+    }
+
+    .btn-signup{
+        height:50px;
+        border-radius:10px;
+        font-weight:600;
+        font-size:17px;
+    }
+
+    .helptext{
+        display:block;
+        color:#6c757d;
+        font-size:13px;
+        margin-top:5px;
+    }
+
+    ul.errorlist{
+        list-style:none;
+        padding:0;
+        margin:6px 0;
+        color:#dc3545;
+        font-size:14px;
+    }
+
+    .login-link{
+        text-align:center;
+        margin-top:20px;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container signup-wrapper">
+
+    <div class="card signup-card">
+
+        <div class="signup-header">
+            <h2>Create Your Account</h2>
+            <p class="mb-0">Join us by filling in the information below.</p>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+
+                    {% for field in form %}
+
+                    <div class="{% if field.name == 'address' %}col-md-12{% else %}col-md-6{% endif %} mb-3">
+
+                        <label class="form-label">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small class="helptext">
+                                {{ field.help_text }}
+                            </small>
+                        {% endif %}
+
+                        {% for error in field.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary btn-signup">
+                        <i class="bi bi-person-plus-fill me-2"></i>
+                        Create Account
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="login-link">
+                Already have an account?
+                <a href="" class="text-decoration-none fw-bold">
+                    Sign In
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
