@@ -13,7 +13,6 @@ class CustomUserAdmin(UserAdmin):
         "first_name",
         "last_name",
         "phone",
-        "cnic_number",
         "is_staff",
         "is_active",
     )

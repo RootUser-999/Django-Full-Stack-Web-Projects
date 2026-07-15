@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 <nav class="navbar navbar-expand-lg custom-navbar">
 
     <div class="container">
@@ -89,12 +91,12 @@
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
 
                     <a
-                        href="{% url 'signup' %}"
+                        href="{% url 'login' %}"
                         class="nav-upload-btn">
 
                         <i class="bi bi-cloud-upload me-2"></i>
 
-                        Sign Up
+                        Log In
 
                     </a>
 

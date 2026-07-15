@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations - Account Created</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'core/css/congrates.css' %}">
+
+</head>
+<body>
+
+<div class="congratulations-container">
+    <!-- Background Elements -->
+    <div class="bg-animation"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="congratulations-wrapper">
+        <!-- Confetti Animation -->
+        <div class="confetti-container" id="confetti"></div>
+
+        <!-- Success Card -->
+        <div class="success-card">
+            <!-- Icon Container -->
+            <div class="icon-container">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <div class="celebration-emoji">🎉</div>
+            </div>
+
+            <!-- Header Section -->
+            <div class="success-header">
+                <h1 class="success-title">Congratulations!</h1>
+                <p class="success-subtitle">Your account has been created successfully</p>
+            </div>
+
+            <!-- Content Section -->
+            <div class="success-content">
+                <div class="success-message">
+                    <p>Welcome to our community! Your account is now active and ready to use.</p>
+                </div>
+
+                <!-- Features List -->
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Secure Account</h4>
+                            <p>Your account is protected with industry-leading security</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Easy to Use</h4>
+                            <p>Intuitive interface designed for your convenience</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>24/7 Support</h4>
+                            <p>Our support team is always available to help you</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="{% url 'login' %}" class="btn btn-primary">
+                    <span class="btn-text">Login to Your Account</span>
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
+                <a href="{% url 'home' %}" class="btn btn-secondary">
+                    <span class="btn-text">Go to Dashboard</span>
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="success-footer">
+                <p>Check your email for a welcome message and important information about your account.</p>
+            </div>
+        </div>
+
+        <!-- Additional Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-icon">📧</div>
+                <h3>Email Verified</h3>
+                <p>Your email address has been verified</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">✨</div>
+                <h3>Profile Ready</h3>
+                <p>You can now customize your profile</p>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">🚀</div>
+                <h3>Get Started</h3>
+                <p>Explore all features available to you</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="confetti.js"></script>
+
+</body>
+</html>

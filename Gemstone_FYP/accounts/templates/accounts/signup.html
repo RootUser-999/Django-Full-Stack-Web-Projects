@@ -1,161 +1,159 @@
 {% extends 'core/base.html' %}
-{% block title %}User Sign Up{% endblock %}
+{% load static %}
+
+{% block title %}User Sign Up - GemVision AI{% endblock %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
 {% block extra_css %}
-
 <style>
-    body{
-        background:#f8f9fa;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .signup-wrapper{
-        min-height:90vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+    body {
+        background: linear-gradient(135deg, #1F2937 0%, #111827 50%, #0F172A 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    .signup-card{
-        width:100%;
-        max-width:650px;
-        border:none;
-        border-radius:18px;
-        box-shadow:0 10px 35px rgba(0,0,0,.12);
-    }
-
-    .signup-header{
-        background:linear-gradient(135deg,#0d6efd,#4f8ef7);
-        color:#fff;
-        padding:30px;
-        border-radius:18px 18px 0 0;
-        text-align:center;
-    }
-
-    .signup-header h2{
-        margin-bottom:8px;
-        font-weight:700;
-    }
-
-    .card-body{
-        padding:35px;
-    }
-
-    .form-label{
-        font-weight:600;
-        margin-bottom:6px;
-    }
-
-    .form-control{
-        border-radius:10px;
-        height:48px;
-    }
-
-    textarea.form-control{
-        height:90px;
-    }
-
-    .btn-signup{
-        height:50px;
-        border-radius:10px;
-        font-weight:600;
-        font-size:17px;
-    }
-
-    .helptext{
-        display:block;
-        color:#6c757d;
-        font-size:13px;
-        margin-top:5px;
-    }
-
-    ul.errorlist{
-        list-style:none;
-        padding:0;
-        margin:6px 0;
-        color:#dc3545;
-        font-size:14px;
-    }
-
-    .login-link{
-        text-align:center;
-        margin-top:20px;
-    }
 </style>
-
 {% endblock %}
 
 {% block content %}
 
+<!-- Animated Background -->
+<div class="background-animation">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-circle bg-circle-4"></div>
+</div>
+
+<!-- Main Container -->
 <div class="container signup-wrapper">
+    <div class="signup-card">
 
-    <div class="card signup-card">
-
+        <!-- Header -->
         <div class="signup-header">
-            <h2>Create Your Account</h2>
-            <p class="mb-0">Join us by filling in the information below.</p>
+            <h2>
+                <i class="bi bi-person-plus-fill me-2"></i>
+                Create Your Account
+            </h2>
+            <p>Join GemVision AI and unlock the power of gemstone classification</p>
         </div>
 
+        <!-- Form Body -->
         <div class="card-body">
-
-            <form method="POST">
-
+            <form method="POST" id="signupForm">
                 {% csrf_token %}
 
+                <!-- Non-field Errors -->
                 {% if form.non_field_errors %}
                     <div class="alert alert-danger">
-                        {{ form.non_field_errors }}
+                        {% for error in form.non_field_errors %}
+                            <strong>{{ error }}</strong>
+                        {% endfor %}
                     </div>
                 {% endif %}
 
+                <!-- Form Fields -->
                 <div class="row">
-
                     {% for field in form %}
+                        <div class="{% if field.name == 'address' %}col-md-12{% else %}col-md-6{% endif %}">
+                            <div class="form-group">
 
-                    <div class="{% if field.name == 'address' %}col-md-12{% else %}col-md-6{% endif %} mb-3">
+                                <!-- Label -->
+                                <label class="form-label" for="{{ field.id_for_label }}">
+                                    {% if field.name == 'username' %}
+                                        <i class="bi bi-person"></i>
+                                    {% elif field.name == 'email' %}
+                                        <i class="bi bi-envelope"></i>
+                                    {% elif field.name == 'first_name' %}
+                                        <i class="bi bi-person-badge"></i>
+                                    {% elif field.name == 'last_name' %}
+                                        <i class="bi bi-person-badge"></i>
+                                    {% elif field.name == 'password1' %}
+                                        <i class="bi bi-lock"></i>
+                                    {% elif field.name == 'password2' %}
+                                        <i class="bi bi-lock-check"></i>
+                                    {% elif field.name == 'phone' %}
+                                        <i class="bi bi-telephone"></i>
+                                    {% elif field.name == 'address' %}
+                                        <i class="bi bi-geo-alt"></i>
+                                    {% else %}
+                                        <i class="bi bi-info-circle"></i>
+                                    {% endif %}
+                                    {{ field.label }}
+                                </label>
 
-                        <label class="form-label">
-                            {{ field.label }}
-                        </label>
+                                <!-- Input Field -->
+                                {{ field }}
 
-                        {{ field }}
+                                <!-- Help Text -->
+                                {% if field.help_text %}
+                                    <small class="helptext">
+                                        {{ field.help_text|safe }}
+                                    </small>
+                                {% endif %}
 
-                        {% if field.help_text %}
-                            <small class="helptext">
-                                {{ field.help_text }}
-                            </small>
-                        {% endif %}
+                                <!-- Field Errors -->
+                                {% for error in field.errors %}
+                                    <div class="text-danger mt-1">
+                                        <i class="bi bi-exclamation-circle"></i> {{ error }}
+                                    </div>
+                                {% endfor %}
 
-                        {% for error in field.errors %}
-                            <div class="text-danger small mt-1">
-                                {{ error }}
                             </div>
-                        {% endfor %}
-
-                    </div>
-
+                        </div>
                     {% endfor %}
-
                 </div>
 
-                <div class="d-grid mt-3">
-                    <button type="submit" class="btn btn-primary btn-signup">
-                        <i class="bi bi-person-plus-fill me-2"></i>
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-signup">
+                        <i class="bi bi-person-plus-fill"></i>
                         Create Account
                     </button>
                 </div>
 
             </form>
 
+            <!-- Login Link -->
             <div class="login-link">
                 Already have an account?
-                <a href="" class="text-decoration-none fw-bold">
-                    Sign In
+                <a href="{% url 'login' %}" class="text-decoration-none">
+                    Sign In Here
                 </a>
             </div>
 
         </div>
 
     </div>
-
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Form submission loading state
+    document.getElementById('signupForm').addEventListener('submit', function() {
+        const btn = this.querySelector('.btn-signup');
+        btn.classList.add('loading');
+        btn.innerHTML = '<span class="spinner"></span> Creating Account...';
+        btn.disabled = true;
+    });
+
+    // Add smooth focus animations
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.parentElement.classList.add('focused');
+        });
+        input.addEventListener('blur', function() {
+            this.parentElement.parentElement.classList.remove('focused');
+        });
+    });
+</script>
 
 {% endblock %}
