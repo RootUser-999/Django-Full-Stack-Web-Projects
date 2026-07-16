@@ -6,7 +6,7 @@ from django.views import View
 from .models import EmailOTP
 from .utils import generate_otp, send_otp_email
 from .forms import OTPVerificationForm
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -65,6 +65,7 @@ class SignUpView(View):
         return render(request, self.template_name, {"form": form})
 
 
+
 class CustomLoginView(LoginView):
     authentication_form = LoginForm
     template_name = "accounts/login.html"
@@ -72,7 +73,7 @@ class CustomLoginView(LoginView):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy("login")
+    next_page = reverse_lazy("home")
 
 
 class CustomPasswordResetView(PasswordResetView):

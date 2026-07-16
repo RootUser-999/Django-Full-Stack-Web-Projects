@@ -1,39 +1,29 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
 <nav class="navbar navbar-expand-lg custom-navbar">
 
     <div class="container">
 
         <!-- Logo -->
-
         <a class="navbar-brand d-flex align-items-center" href="/">
 
             <div class="logo-box">
-
                 <i class="bi bi-gem"></i>
-
             </div>
 
             <div class="brand-text">
-
                 <span class="brand-title">
-
                     GemVision AI
-
                 </span>
-
                 <small>
-
                     Gemstone Classifier
-
                 </small>
-
             </div>
 
         </a>
 
         <!-- Mobile Toggle -->
-
         <button
             class="navbar-toggler border-0 shadow-none"
             type="button"
@@ -44,63 +34,75 @@
 
         </button>
 
-        <!-- Links -->
-
-        <div
-            class="collapse navbar-collapse"
-            id="navbarNav">
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
+                <!-- Home -->
                 <li class="nav-item">
-
                     <a class="nav-link active" href="/">
-
                         <i class="bi bi-house-door me-2"></i>
-
                         Home
-
                     </a>
-
                 </li>
 
+                 <!-- About -->
                 <li class="nav-item">
-
-                    <a class="nav-link" href="/about/">
-
+                    <a class="nav-link" href="">
                         <i class="bi bi-info-circle me-2"></i>
-
-                        About
-
+                        About us
                     </a>
+                </li> 
 
-                </li>
-
-                <li class="nav-item">
-
+                <!-- Contact -->
+                {% comment %} <li class="nav-item">
                     <a class="nav-link" href="/contact/">
-
                         <i class="bi bi-envelope me-2"></i>
-
                         Contact
-
                     </a>
+                </li>  {% endcomment %}
 
+                <!-- Marketplace (Visible to Everyone) -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'marketplace' %}">
+                        <i class="bi bi-shop me-2"></i>
+                        Marketplace
+                    </a>
                 </li>
 
+                {% if user.is_authenticated %}
+
+                <!-- Messages -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'messages' %}">
+                        <i class="bi bi-chat-dots me-2"></i>
+                        Messages
+                    </a>
+                </li>
+
+                <!-- Logout -->
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-
-                    <a
-                        href="{% url 'login' %}"
-                        class="nav-upload-btn">
-
-                        <i class="bi bi-cloud-upload me-2"></i>
-
-                        Log In
-
-                    </a>
-
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-upload-btn border-0">
+                        <i class="bi bi-box-arrow-right me-2"></i>
+                        Logout
+                    </button>
+                </form>
                 </li>
+
+                {% else %}
+
+                <!-- Login -->
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                    <a href="{% url 'login' %}" class="nav-upload-btn">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        Log In
+                    </a>
+                </li>
+
+                {% endif %}
 
             </ul>
 

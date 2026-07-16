@@ -1,42 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+{% extends "core/base.html" %}
+{% load static %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+{% block title %}User Profile - AI Gemstone Classifier{% endblock %}
 
-<div class="container mt-5">
-    <div class="card shadow mx-auto" style="max-width: 500px;">
-        <div class="card-body text-center">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+{% endblock %}
 
-            <h2 class="mb-3">👤 User Profile</h2>
+{% block content %}
 
-            <hr>
-
-            <h4>Welcome, {{ user.first_name|default:user.username }}!</h4>
-
-            <p class="text-muted">
-                You are successfully logged in.
-            </p>
-
-            <div class="mt-4">
-                <p><strong>Username:</strong> {{ user.username }}</p>
-                <p><strong>Email:</strong> {{ user.email }}</p>
-                <p><strong>First Name:</strong> {{ user.first_name }}</p>
-                <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-            </div>
-
-            <a href="{% url 'home' %}" class="btn btn-danger mt-3">
-                Logout
-            </a>
-
-        </div>
-    </div>
+<!-- Background Animation -->
+<div class="background-animation">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-circle bg-circle-4"></div>
 </div>
 
-</body>
-</html>
+<section class="profile-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <!-- Profile Header Card -->
+                <div class="profile-header-card">
+                    <div class="profile-header-bg"></div>
+                    
+                    <div class="profile-content">
+                        <!-- Avatar Section -->
+                        <div class="avatar-container">
+                            <div class="avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+
+                        <!-- User Info -->
+                        <div class="user-info">
+                            <h1 class="user-name">
+                                {{ user.first_name|default:user.username }}
+                            </h1>
+                            <p class="user-title">Active Member</p>
+                            <div class="user-status">
+                                <span class="status-badge">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Verified User
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Details Card -->
+                <div class="profile-details-card">
+                    <div class="card-header-custom">
+                        <h2 class="section-title">
+                            <i class="bi bi-info-circle-fill"></i>
+                            Account Information
+                        </h2>
+                    </div>
+
+                    <div class="card-body-custom">
+                        <!-- Profile Info Grid -->
+                        <div class="profile-info-grid">
+                            
+                            <!-- Username -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-person-badge"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Username</p>
+                                    <p class="info-value">{{ user.username }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Email Address</p>
+                                    <p class="info-value">{{ user.email }}</p>
+                                </div>
+                            </div>
+
+                            <!-- First Name -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-pencil-square"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">First Name</p>
+                                    <p class="info-value">{{ user.first_name|default:"Not set" }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-pencil-square"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Last Name</p>
+                                    <p class="info-value">{{ user.last_name|default:"Not set" }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Member Since -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-calendar-check-fill"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Member Since</p>
+                                    <p class="info-value">{{ user.date_joined|date:"M d, Y" }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Last Login -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="bi bi-clock-history"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Last Active</p>
+                                    <p class="info-value">{{ user.last_login|date:"M d, Y H:i"|default:"Just now" }}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info Card -->
+                <div class="additional-info-card">
+                    <div class="info-box">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Security Status</h3>
+                        <p>Your account is secure and protected</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="bi bi-star-fill"></i>
+                        <h3>Account Status</h3>
+                        <p>Active and fully functional</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="bi bi-globe"></i>
+                        <h3>Access Level</h3>
+                        <p>Full platform access granted</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="{% url 'home' %}" class="btn-action btn-primary">
+                        <i class="bi bi-house-fill"></i>
+                        Back to Home
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn-action btn-logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

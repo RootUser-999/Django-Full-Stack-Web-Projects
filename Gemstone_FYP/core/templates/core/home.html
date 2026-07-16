@@ -12,10 +12,163 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+<style>
+    /* Background Animation */
+    .background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: #f8fafc;
+    }
+
+    .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.08;
+        animation: float 25s infinite ease-in-out;
+    }
+
+    .bg-circle-1 {
+        width: 400px;
+        height: 400px;
+        background: #6366f1;
+        top: -150px;
+        left: -150px;
+        animation-delay: 0s;
+    }
+
+    .bg-circle-2 {
+        width: 350px;
+        height: 350px;
+        background: #818cf8;
+        bottom: -100px;
+        right: -100px;
+        animation-delay: 4s;
+    }
+
+    .bg-circle-3 {
+        width: 300px;
+        height: 300px;
+        background: #10b981;
+        top: 50%;
+        left: 5%;
+        animation-delay: 8s;
+    }
+
+    .bg-circle-4 {
+        width: 250px;
+        height: 250px;
+        background: #4f46e5;
+        top: 20%;
+        right: 5%;
+        animation-delay: 2s;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(40px, 40px);
+        }
+    }
+
+    /* Hero Section Background */
+    .hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #ffffff; /* Identify & Instantly */
+    }
+    .hero-section {
+        background: linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #f0f9ff 50%,
+            #f8fafc 100%
+        ) !important;
+    }
+
+    /* Upload Card Background */
+    .upload-card {
+        background: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(99, 102, 241, 0.1) !important;
+    }
+
+    .upload-box {
+        background: linear-gradient(
+            180deg,
+            rgba(99, 102, 241, 0.04),
+            rgba(129, 140, 248, 0.02)
+        ) !important;
+    }
+
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+        .background-animation {
+            background: #0f172a;
+        }
+
+        .bg-circle {
+            opacity: 0.1;
+        }
+
+        .hero-section {
+            background: linear-gradient(
+                135deg,
+                #0f172a 0%,
+                #1a1f3a 50%,
+                #0f172a 100%
+            ) !important;
+        }
+
+        .upload-card {
+            background: rgba(30, 41, 59, 0.7) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .upload-box {
+            background: linear-gradient(
+                180deg,
+                rgba(99, 102, 241, 0.08),
+                rgba(129, 140, 248, 0.04)
+            ) !important;
+        }
+    }
+
+    /* Smooth transition for body */
+    body {
+        background: #f8fafc;
+        transition: background 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #0f172a;
+        }
+    }
+</style>
+
 {% endblock %}
 
 
 {% block content %}
+
+
+
+<!-- Background Animation Container -->
+<div class="background-animation">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-circle bg-circle-4"></div>
+</div>
 
 <section class="hero-section">
 
@@ -99,7 +252,7 @@
 
                                 </div>
 
-                                <h3>
+                                <h3 style='color: #ffffff;'>
 
                                     Drag & Drop Your Gemstone Image
 

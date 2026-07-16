@@ -171,3 +171,10 @@ class ContactView(TemplateView):
     template_name = "core/contact.html"
 
 
+
+def marketplace(request):
+    return render(request, "core/marketplace.html")
+
+
+def messages(request):
+    return render(request, "core/messages.html")
