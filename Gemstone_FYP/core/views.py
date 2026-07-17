@@ -19,57 +19,61 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 
-MODEL_PATH = os.path.join(settings.BASE_DIR, "model", "best_model.keras")
-model = tf.keras.models.load_model(MODEL_PATH)
-
-class_names = [
-    "Alexandrite", "Amber", "Cats Eye", "Malachite", "Morganite",
-    "aquamarine", "diamond", "emerald", "fluorite green",
-    "fluorite purple", "garnet", "peridot", "ruby",
-    "sapphire blue", "sapphire pink", "topaz blue",
-    "topaz yellow", "tourmaline black", "turquoise", "zircon"
-]
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+# MODEL_PATH = os.path.join(settings.BASE_DIR, "model", "best_model.keras")
+# model = tf.keras.models.load_model(MODEL_PATH)
 
 @csrf_exempt
 @api_view(["POST"])
 def predict_gemstone(request):
     try:
+        if "image" not in request.FILES:
+            return Response(
+                {"error": "No image file uploaded."},
+                status=400
+            )
+
         image_file = request.FILES["image"]
 
-        # Open image
-        # image = Image.open(image_file).convert("RGB")
-        # image = image.resize((224, 224))
-        from PIL import ImageOps
-
-        image = Image.open(image_file)
-        image = ImageOps.exif_transpose(image)
-        image = image.convert("RGB")
-        image = image.resize((224, 224))
-
-        # Convert to array
-        # img_array = np.array(image) / 255.0
-        # img_array = np.expand_dims(img_array, axis=0)
-        img_array = np.array(image).astype("float32")
-        img_array = np.expand_dims(img_array, axis=0)
-
-        img_array = tf.keras.applications.efficientnet_v2.preprocess_input(
-            img_array
+        # Save uploaded image temporarily
+        temp_path = default_storage.save(
+            f"temp/{image_file.name}",
+            ContentFile(image_file.read())
         )
 
-        # Prediction
-        predictions = model.predict(img_array)
-        class_index = np.argmax(predictions)
-        confidence = float(np.max(predictions))
+        image_path = default_storage.path(temp_path)
 
-        result = {
-            "class": class_names[class_index],
-            "confidence": confidence
-        }
+        try:
+            predicted_class, confidence, all_predictions = predict(image_path)
 
-        return Response(result)
+            # Image is not a gemstone OR confidence too low
+            # Image is not a gemstone
+            if predicted_class is None:
+                return Response({
+                    "success": False,
+                    "message": "The uploaded image is not a gemstone.",
+                    "confidence": round(confidence, 2)
+                })
+
+            # Successful prediction
+            return Response({
+                "success": True,
+                "class": predicted_class,
+                "confidence": round(confidence, 2),
+                "predictions": all_predictions
+            })
+
+        finally:
+            # Delete temporary image
+            if default_storage.exists(temp_path):
+                default_storage.delete(temp_path)
 
     except Exception as e:
-        return Response({"error": str(e)})
+        return Response(
+            {"error": str(e)},
+            status=400
+        )
 
 @method_decorator(never_cache, name='dispatch')
 class HomeView(TemplateView):
@@ -136,32 +140,7 @@ class PredictView(CreateView):
             },
         )
 
-# class PredictView(CreateView):
-#     model = imageUpload
-#     form_class = ImageUploadForm
-#     template_name = "core/result.html"
 
-#     def form_valid(self, form):
-#         # Save uploaded image
-#         self.object = form.save()
-
-#         # Predict gemstone
-#         prediction, confidence, all_predictions = predict(
-#             self.object.gem_image.path
-#         )
-
-#         # Always render the result page
-#         return render(
-#             self.request,
-#             "core/result.html",
-#             {
-#                 "form": ImageUploadForm(),
-#                 "image": self.object,
-#                 "prediction": prediction,
-#                 "confidence": round(confidence, 2),
-#                 "all_predictions": all_predictions,
-#             },
-#         )
 
 class AboutView(TemplateView):
     template_name = "core/about.html"

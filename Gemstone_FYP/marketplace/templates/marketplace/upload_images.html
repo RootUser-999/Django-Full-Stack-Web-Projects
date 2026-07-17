@@ -1,0 +1,237 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+Upload Gemstone Images
+{% endblock %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/upload_images.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container upload-container py-5">
+
+
+    <div class="row justify-content-center">
+
+
+        <div class="col-lg-7 col-md-9">
+
+
+            <div class="upload-card">
+
+
+                <!-- Header -->
+
+                <div class="upload-header">
+
+
+                    <span class="step-badge">
+                        STEP 2 OF 2
+                    </span>
+
+
+                    <h2>
+                        Upload Gemstone Image
+                    </h2>
+
+
+                    <p>
+                        Upload a clear image of your gemstone.
+                        Our AI will verify it before publishing.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- Body -->
+
+
+                <div class="upload-body">
+
+
+                    <!-- Instructions -->
+
+
+                    <div class="info-box">
+
+
+                        <h6>
+                            Image Requirements
+                        </h6>
+
+
+                        <ul>
+
+                            <li>
+                                Upload a clear gemstone image.
+                            </li>
+
+
+                            <li>
+                                Avoid blurry or dark images.
+                            </li>
+
+
+                            <li>
+                                Keep gemstone visible clearly.
+                            </li>
+
+
+                            <li>
+                                Non-gemstone images will be rejected.
+                            </li>
+
+
+                        </ul>
+
+
+                    </div>
+
+
+
+
+
+                    <!-- Upload Form -->
+
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+
+                        {% csrf_token %}
+
+
+
+                        <div class="upload-area">
+
+
+
+                            <label for="id_image"
+                                   class="upload-label">
+
+
+                                <i class="bi bi-cloud-arrow-up upload-icon"></i>
+
+
+                                <h5>
+                                    Choose Gemstone Image
+                                </h5>
+
+
+                                <p>
+                                    Select JPG, PNG or JPEG image
+                                </p>
+
+
+                            </label>
+
+
+
+
+
+                            <div class="file-input-wrapper">
+
+
+                                {{ form.image }}
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                        {% if form.image.errors %}
+
+
+                            <div class="error-box">
+
+
+                                {{ form.image.errors }}
+
+
+                            </div>
+
+
+                        {% endif %}
+
+
+
+
+
+                        <!-- Buttons -->
+
+
+                        <div class="button-group">
+
+
+
+                            <a href="{% url 'marketplace:create_listing' %}"
+                               class="back-btn">
+
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Back
+
+
+                            </a>
+
+
+
+
+
+                            <button type="submit"
+                                    class="verify-btn">
+
+
+                                Verify & Publish
+
+
+                                <i class="bi bi-shield-check ms-2"></i>
+
+
+                            </button>
+
+
+
+                        </div>
+
+
+
+                    </form>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}
