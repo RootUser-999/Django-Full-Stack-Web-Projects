@@ -1,11 +1,545 @@
 {% extends "core/base.html" %}
+{% load static %}
 
-{% block title %}Marketplace{% endblock %}
+{% block title %}
+Marketplace
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'marketplace/css/marketplace.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container py-5 text-center">
-    <h2>Marketplace</h2>
-    <p>This feature is under development.</p>
-    <a href="{% url 'marketplace:create_listing' %}" class="btn btn-primary mt-3">Create Listing</a>
+
+<!-- ========================================= -->
+<!-- Hero Section -->
+<!-- ========================================= -->
+
+<section class="marketplace-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center gy-5">
+
+            <div class="col-lg-7">
+
+                <span class="hero-badge">
+
+                    <i class="bi bi-patch-check-fill"></i>
+
+                    AI Verified Marketplace
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    Buy & Sell
+                    <span>Authentic Gemstones</span>
+
+                </h1>
+
+                <p class="hero-text">
+
+                    Discover premium AI-verified gemstones from trusted sellers around
+                    the world. Every listing is analyzed using our gemstone
+                    classification model to help buyers purchase with confidence.
+
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mt-4">
+
+                    <a href="{% url 'marketplace:create_listing' %}"
+                       class="btn create-btn">
+
+                        <i class="bi bi-plus-circle me-2"></i>
+
+                        Sell Gemstone
+
+                    </a>
+
+                    <a href="#marketplace"
+                       class="btn btn-outline-light rounded-pill px-4">
+
+                        Browse Listings
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="hero-stats">
+
+                    <div class="stat-card">
+
+                        <i class="bi bi-gem"></i>
+
+                        <h3>
+
+                            {{ listings|length }}
+
+                        </h3>
+
+                        <p>
+
+                            Active Listings
+
+                        </p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <i class="bi bi-patch-check-fill"></i>
+
+                        <h3>
+
+                            100%
+
+                        </h3>
+
+                        <p>
+
+                            AI Verified
+
+                        </p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <h3>
+
+                            Trusted
+
+                        </h3>
+
+                        <p>
+
+                            Marketplace
+
+                        </p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <i class="bi bi-stars"></i>
+
+                        <h3>
+
+                            Premium
+
+                        </h3>
+
+                        <p>
+
+                            Gem Collection
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================= -->
+<!-- Marketplace -->
+<!-- ========================================= -->
+
+<section id="marketplace" class="py-5">
+
+    <div class="container">
+
+        <!-- ================= Search Card ================= -->
+
+        <div class="search-box">
+
+    <form method="GET" action="{% url 'marketplace:marketplace' %}">
+
+        <div class="row g-3 align-items-center">
+
+            <div class="col-lg-7">
+
+                <div class="input-group">
+
+                    <span class="input-group-text">
+
+                        <i class="bi bi-search"></i>
+
+                    </span>
+
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search by gemstone, seller, origin..."
+                        value="{{ request.GET.search }}">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <select
+                    class="form-select"
+                    name="category">
+
+                    <option value="">
+
+                        All Categories
+
+                    </option>
+
+                    <option value="Ruby"
+                        {% if request.GET.category == "Ruby" %}selected{% endif %}>
+
+                        Ruby
+
+                    </option>
+
+                    <option value="Emerald"
+                        {% if request.GET.category == "Emerald" %}selected{% endif %}>
+
+                        Emerald
+
+                    </option>
+
+                    <option value="Sapphire"
+                        {% if request.GET.category == "Sapphire" %}selected{% endif %}>
+
+                        Sapphire
+
+                    </option>
+
+                    <option value="Diamond"
+                        {% if request.GET.category == "Diamond" %}selected{% endif %}>
+
+                        Diamond
+
+                    </option>
+
+                    <option value="Topaz"
+                        {% if request.GET.category == "Topaz" %}selected{% endif %}>
+
+                        Topaz
+
+                    </option>
+
+                    <option value="Garnet"
+                        {% if request.GET.category == "Garnet" %}selected{% endif %}>
+
+                        Garnet
+
+                    </option>
+
+                    <option value="Aquamarine"
+                        {% if request.GET.category == "Aquamarine" %}selected{% endif %}>
+
+                        Aquamarine
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    <i class="bi bi-search me-2"></i>
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
 </div>
+
+
+
+        <!-- ================= Categories ================= -->
+
+        <div class="filters mt-5">
+
+    <a href="{% url 'marketplace:marketplace' %}"
+       class="btn {% if not request.GET.category %}active{% endif %}">
+
+        All
+
+    </a>
+
+    <a href="?category=Ruby"
+       class="btn {% if request.GET.category == 'Ruby' %}active{% endif %}">
+
+        Ruby
+
+    </a>
+
+    <a href="?category=Emerald"
+       class="btn {% if request.GET.category == 'Emerald' %}active{% endif %}">
+
+        Emerald
+
+    </a>
+
+    <a href="?category=Sapphire"
+       class="btn {% if request.GET.category == 'Sapphire' %}active{% endif %}">
+
+        Sapphire
+
+    </a>
+
+    <a href="?category=Diamond"
+       class="btn {% if request.GET.category == 'Diamond' %}active{% endif %}">
+
+        Diamond
+
+    </a>
+
+    <a href="?category=Topaz"
+       class="btn {% if request.GET.category == 'Topaz' %}active{% endif %}">
+
+        Topaz
+
+    </a>
+
+    <a href="?category=Garnet"
+       class="btn {% if request.GET.category == 'Garnet' %}active{% endif %}">
+
+        Garnet
+
+    </a>
+
+    <a href="?category=Aquamarine"
+       class="btn {% if request.GET.category == 'Aquamarine' %}active{% endif %}">
+
+        Aquamarine
+
+    </a>
+
+</div>
+        <!-- ================= Section Heading ================= -->
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap mt-5 mb-4">
+
+            <div>
+
+                <h2 class="fw-bold text-white mb-2">
+
+                    Featured Gemstones
+
+                </h2>
+
+                <p class="text-light opacity-75 mb-0">
+
+                    Explore AI-verified gemstones from verified sellers.
+
+                </p>
+
+            </div>
+
+            <span class="hero-badge">
+
+                {{ listings|length }} Listings
+
+            </span>
+
+        </div>
+
+
+
+        <!-- ================= Listings ================= -->
+
+        <div class="row g-4">
+
+            {% for listing in listings %}
+
+            <div class="col-xl-4 col-lg-6">
+
+                <div class="listing-card">
+                                        <!-- ================= Image ================= -->
+
+                    <div class="listing-image">
+
+                        {% if listing.images.first %}
+
+                            <img src="{{ listing.images.first.image.url }}"
+                                 alt="{{ listing.title }}">
+
+                        {% else %}
+
+                            <img src="{% static 'images/no-image.png' %}"
+                                 alt="No Image">
+
+                        {% endif %}
+
+                        <span class="verify-badge">
+
+                            <i class="bi bi-patch-check-fill me-1"></i>
+
+                            Verified
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- ================= Card Body ================= -->
+
+                    <div class="listing-body">
+
+                        <h4>
+
+                            {{ listing.title }}
+
+                        </h4>
+
+                        <p class="gem-name">
+
+                            {{ listing.ai_prediction }}
+
+                        </p>
+
+
+                        <div class="price">
+
+                            ${{ listing.price }}
+
+                        </div>
+
+
+                        <div class="details">
+
+                            <div>
+
+                                <i class="bi bi-gem"></i>
+
+                                {{ listing.weight }} ct
+
+                            </div>
+
+                            <div>
+
+                                <i class="bi bi-person-circle"></i>
+
+                                {{ listing.seller.username }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="confidence">
+
+                            AI Confidence
+
+                            <span>
+
+                                {{ listing.ai_confidence|floatformat:1 }}%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+
+                            <small class="listing-date">
+
+                            <i class="bi bi-clock me-1"></i>
+
+                            {{ listing.created_at|date:"M d, Y" }}
+
+                        </small>
+
+                        </div>
+
+
+                        <div class="card-buttons mt-4">
+
+                            <a href="{% url 'marketplace:listing_detail' listing.pk %}"
+                               class="btn btn-primary">
+
+                                <i class="bi bi-eye me-2"></i>
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- ================= Empty State ================= -->
+
+            <div class="col-12">
+
+                <div class="empty-state">
+
+                    <i class="bi bi-gem"></i>
+
+                    <h2 class="mt-4">
+
+                        No Listings Available
+
+                    </h2>
+
+                    <p>
+
+                        There are currently no gemstone listings in the marketplace.
+                        Be the first to publish an AI-verified gemstone and start
+                        selling to buyers around the world.
+
+                    </p>
+
+                    <a href="{% url 'marketplace:create_listing' %}"
+                       class="btn create-btn mt-3">
+
+                        <i class="bi bi-plus-circle me-2"></i>
+
+                        Create Your First Listing
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

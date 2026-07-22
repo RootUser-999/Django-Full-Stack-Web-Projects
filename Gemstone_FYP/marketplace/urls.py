@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import CreateListingView, UploadImagesView
+from .views import CreateListingView, UploadImagesView , ListingDetailView
 
 app_name = "marketplace"
 
@@ -19,5 +19,11 @@ urlpatterns = [
         UploadImagesView.as_view(),
         name="upload_images"
     ),
+     path(
+        "listing/<int:pk>/",
+        ListingDetailView.as_view(),
+        name="listing_detail",
+    ),
+
 
 ]
