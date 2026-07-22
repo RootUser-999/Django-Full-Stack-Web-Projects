@@ -88,10 +88,7 @@ class HomeView(TemplateView):
 
 
 
-from django.views.generic import CreateView
 
-from django.shortcuts import render
-from django.views.generic import CreateView
 @method_decorator(never_cache, name='dispatch')
 class PredictView(CreateView):
     model = imageUpload
@@ -154,6 +151,3 @@ class ContactView(TemplateView):
 def marketplace(request):
     return render(request, "core/marketplace.html")
 
-
-def messages(request):
-    return render(request, "core/messages.html")

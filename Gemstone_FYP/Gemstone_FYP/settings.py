@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "rest_framework",
     'accounts',
     'marketplace',
+    "chat",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +105,29 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+import os
 
+CHANNEL_LAYERS = {
+
+    "default": {
+
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+
+        "CONFIG": {
+
+            "hosts": [
+                "redis://127.0.0.1:6379/0"
+            ],
+
+            "capacity": 1500,
+
+            "expiry": 10,
+
+        },
+
+    },
+
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
@@ -135,5 +159,5 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "shahzabaman971@gmail.com"
 EMAIL_HOST_PASSWORD = "jvkl ssux emia xeei"
-
+ASGI_APPLICATION = "Gemstone_FYP.asgi.application"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

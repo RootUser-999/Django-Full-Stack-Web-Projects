@@ -73,12 +73,24 @@
                 {% if user.is_authenticated %}
 
                 <!-- Messages -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'messages' %}">
+                <a class="nav-link"
+                    href="{% url 'chat:conversation_list' %}">
+
                         <i class="bi bi-chat-dots me-2"></i>
+
                         Messages
+
+                        {% if unread_count %}
+
+                            <span class="badge bg-danger rounded-pill">
+
+                                {{ unread_count }}
+
+                            </span>
+
+                        {% endif %}
+
                     </a>
-                </li>
 
                 <!-- Logout -->
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">

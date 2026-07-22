@@ -1,0 +1,176 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+Messages
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'chat/css/conversation_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5 inbox-container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <!-- Header -->
+
+                <div class="card-header d-flex justify-content-between align-items-center">
+
+                    <h3 class="mb-0">
+
+                        <i class="bi bi-chat-dots-fill me-2"></i>
+
+                        Messages
+
+                    </h3>
+
+                    <!-- Debug (remove later) -->
+                    <span class="badge bg-light text-dark">
+                        {{ conversations|length }} Conversation{{ conversations|length|pluralize }}
+                    </span>
+
+                </div>
+
+                <!-- Conversation List -->
+
+                <div class="card-body p-0">
+
+                    {% if conversations %}
+
+                        {% for conversation in conversations %}
+
+                            <a
+                                href="{% url 'chat:conversation_detail' conversation.pk %}"
+                                class="conversation-item text-decoration-none">
+
+                                <!-- Listing Image -->
+
+                                {% if conversation.listing.images.first %}
+
+                                    <img
+                                        src="{{ conversation.listing.images.first.image.url }}"
+                                        alt="{{ conversation.listing.title }}"
+                                        class="conversation-image">
+
+                                {% else %}
+
+                                    <div class="conversation-image d-flex align-items-center justify-content-center">
+
+                                        <i class="bi bi-image fs-2"></i>
+
+                                    </div>
+
+                                {% endif %}
+
+                                <!-- Conversation Details -->
+
+                                <div class="conversation-content">
+
+                                    <h5>
+
+                                        {{ conversation.listing.title }}
+
+                                    </h5>
+
+                                    <p class="mb-1">
+
+                                        {% if request.user == conversation.buyer %}
+
+                                            {{ conversation.seller.username }}
+
+                                        {% else %}
+
+                                            {{ conversation.buyer.username }}
+
+                                        {% endif %}
+
+                                    </p>
+
+                                    {% with conversation.messages.last as last_message %}
+
+                                        {% if last_message %}
+
+                                            <small>
+
+                                                {{ last_message.content|truncatechars:45 }}
+
+                                            </small>
+
+                                        {% else %}
+
+                                            <small class="text-muted">
+
+                                                No messages yet
+
+                                            </small>
+
+                                        {% endif %}
+
+                                    {% endwith %}
+
+                                </div>
+
+                                <!-- Time -->
+
+                                <div class="conversation-time">
+
+                                    <small>
+
+                                        {{ conversation.updated_at|timesince }} ago
+
+                                    </small>
+
+                                </div>
+
+                            </a>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="text-center py-5">
+
+                            <i class="bi bi-chat-square-text display-2 text-secondary"></i>
+
+                            <h4 class="mt-4">
+
+                                No Conversations Yet
+
+                            </h4>
+
+                            <p class="text-secondary">
+
+                                Start chatting with a seller from any marketplace listing.
+
+                            </p>
+
+                            <a
+                                href="{% url 'marketplace:marketplace' %}"
+                                class="btn btn-primary mt-3">
+
+                                Browse Marketplace
+
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

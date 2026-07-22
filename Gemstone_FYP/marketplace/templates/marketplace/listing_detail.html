@@ -423,13 +423,14 @@
 
                         </button>
 
-                        <button class="chat-btn">
+                        <a href="{% url 'chat:start_conversation' listing.id %}"
+                        class="btn chat-btn">
 
                             <i class="bi bi-chat-dots me-2"></i>
 
-                            Chat Seller
+                            Chat with Seller
 
-                        </button>
+                        </a>
 
                     </div>
 
