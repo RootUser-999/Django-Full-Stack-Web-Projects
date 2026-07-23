@@ -1,0 +1,279 @@
+:root {
+    /* Primary Colors (Main Brand) */
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    
+    /* Status Colors */
+    --success-color: #10b981;
+    --success-light: #d1fae5;
+    --error-color: #ef4444;
+    
+    /* Neutral Colors (Background & Text) */
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Additional Colors */
+    --input-background: #f9fafb;
+    --resend-background: #f0f9ff;
+    --error-background: rgba(239, 68, 68, 0.05);
+    --focus-shadow: rgba(99, 102, 241, 0.1);
+    
+    /* Dark Mode Colors */
+    --dark-bg: #0f172a;
+    --dark-surface: #1e293b;
+    --dark-text-primary: #f1f5f9;
+    --dark-text-secondary: #cbd5e1;
+    --dark-border: #334155;
+    
+    /* Shadows */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ==========================================
+   Conversation List / Inbox
+========================================== */
+
+.inbox-container {
+    color: var(--dark-text-primary);
+}
+
+
+/* ==========================================
+   Main Card
+========================================== */
+
+.card {
+    background: rgba(30, 41, 59, 0.90);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+.card-header {
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
+    border: none;
+    padding: 25px 30px;
+}
+
+.card-header h3 {
+    color: white;
+    font-weight: 700;
+    margin: 0;
+}
+
+
+/* ==========================================
+   Conversation Item
+========================================== */
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 20px 25px;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    transition: var(--transition);
+
+    position: relative;
+
+    background: transparent;
+}
+
+.conversation-item:last-child {
+    border-bottom: none;
+}
+
+.conversation-item:hover {
+    background: rgba(99, 102, 241, 0.10);
+    transform: translateX(5px);
+}
+
+
+/* ==========================================
+   Image
+========================================== */
+
+.conversation-image {
+    width: 75px;
+    height: 75px;
+
+    border-radius: 16px;
+
+    object-fit: cover;
+
+    border: 2px solid rgba(255,255,255,0.08);
+
+    flex-shrink: 0;
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================
+   Content
+========================================== */
+
+.conversation-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.conversation-content h5 {
+    color: var(--dark-text-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.conversation-content p {
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.conversation-content small {
+    color: var(--dark-text-secondary);
+
+    display: block;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================
+   Time
+========================================== */
+
+.conversation-time {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   Unread Badge
+========================================== */
+
+.unread-badge {
+    width: 10px;
+    height: 10px;
+
+    background: var(--success-color);
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 25px;
+    right: 20px;
+
+    box-shadow: 0 0 10px rgba(16,185,129,0.5);
+}
+
+
+/* ==========================================
+   Empty State
+========================================== */
+
+.text-center {
+    color: var(--dark-text-secondary);
+}
+
+.text-center i {
+    color: var(--primary-light);
+    opacity: 0.7;
+}
+
+.text-center h4 {
+    color: var(--dark-text-primary);
+    font-weight: 700;
+}
+
+.text-center p {
+    color: var(--dark-text-secondary);
+}
+
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
+.card-body {
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.card-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.card-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 20px;
+}
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 768px) {
+
+    .conversation-item {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .conversation-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .conversation-content h5 {
+        font-size: 0.95rem;
+    }
+
+    .conversation-content small {
+        font-size: 0.8rem;
+    }
+
+    .conversation-time {
+        display: none;
+    }
+}

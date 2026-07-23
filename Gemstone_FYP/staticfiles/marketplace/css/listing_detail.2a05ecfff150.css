@@ -1,0 +1,320 @@
+/* ===========================
+   Listing Detail Page
+=========================== */
+:root {
+    /* Primary Colors (Main Brand) */
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    
+    /* Status Colors */
+    --success-color: #10b981;
+    --success-light: #d1fae5;
+    --error-color: #ef4444;
+    
+    /* Neutral Colors (Background & Text) */
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Additional Colors */
+    --input-background: #f9fafb;
+    --resend-background: #f0f9ff;
+    --error-background: rgba(239, 68, 68, 0.05);
+    --focus-shadow: rgba(99, 102, 241, 0.1);
+    
+    /* Dark Mode Colors */
+    --dark-bg: #0f172a;
+    --dark-surface: #1e293b;
+    --dark-text-primary: #f1f5f9;
+    --dark-text-secondary: #cbd5e1;
+    --dark-border: #334155;
+    
+    /* Shadows */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.detail-container{
+    color: var(--text-primary);
+}
+
+/* ===========================
+   Banner
+=========================== */
+
+.banner-card{
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow-xl);
+}
+
+.banner-card img{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+}
+
+/* ===========================
+   Cards
+=========================== */
+
+.detail-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    color:var(--text-primary);
+    box-shadow:var(--shadow-lg);
+}
+
+.detail-card .card-body{
+    padding:30px;
+}
+
+.detail-card h2,
+.detail-card h3,
+.detail-card h4,
+.detail-card h5{
+    color:var(--text-primary);
+}
+
+.detail-card p{
+    color:var(--text-secondary);
+    line-height:1.8;
+}
+
+.detail-card strong{
+    color:var(--text-primary);
+}
+
+/* ===========================
+   Price
+=========================== */
+
+.price{
+    font-size:2.3rem;
+    font-weight:700;
+    color:var(--primary-light);
+}
+
+/* ===========================
+   Specification Grid
+=========================== */
+
+.spec-box{
+    padding:16px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    transition:.3s;
+    height:100%;
+}
+
+.spec-box:hover{
+    background:rgba(99,102,241,.08);
+    transform:translateY(-4px);
+}
+
+.spec-title{
+    color:var(--primary-light);
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.spec-value{
+    color:var(--text-primary);
+}
+
+/* ===========================
+   Gallery
+=========================== */
+
+.gallery-image{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:16px;
+    transition:.35s;
+    cursor:pointer;
+}
+
+.gallery-image:hover{
+    transform:scale(1.04);
+    box-shadow:0 12px 25px rgba(0,0,0,.35);
+}
+
+/* ===========================
+   Sidebar
+=========================== */
+
+.sidebar-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    box-shadow:var(--shadow-xl);
+}
+
+.sidebar-card h3,
+.sidebar-card h5{
+    color:var(--text-primary);
+}
+
+.sidebar-card p{
+    color:var(--text-secondary);
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.buy-btn{
+    width:100%;
+    background:var(--success-color);
+    border:none;
+    color:white;
+    font-weight:600;
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.buy-btn:hover{
+    background:#059669;
+    transform:translateY(-2px);
+}
+
+.chat-btn{
+    width:100%;
+    background:var(--primary-color);
+    border:none;
+    color:white;
+    font-weight:600;
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.chat-btn:hover{
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+}
+
+/* ===========================
+   Badge
+=========================== */
+
+.verify-badge{
+    background:var(--success-color);
+    color:white;
+    font-size:.9rem;
+    padding:8px 16px;
+    border-radius:30px;
+}
+
+/* ===========================
+   Related Listings
+=========================== */
+
+.related-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+    height:100%;
+}
+
+.related-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,.35);
+}
+
+.related-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.related-card .card-body{
+    padding:20px;
+}
+
+.related-card h5{
+    color:var(--text-primary);
+}
+
+.related-card p{
+    color:var(--text-secondary);
+}
+
+.related-card .price{
+    font-size:1.2rem;
+    color:var(--primary-light);
+}
+
+/* ===========================
+   Outline Button
+=========================== */
+
+.btn-outline-primary{
+    border:1px solid var(--primary-color);
+    color:var(--primary-light);
+    border-radius:10px;
+}
+
+.btn-outline-primary:hover{
+    background:var(--primary-color);
+    color:white;
+}
+
+/* ===========================
+   Horizontal Rule
+=========================== */
+
+hr{
+    border-color:rgba(255,255,255,.15);
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:991px){
+
+    .banner-card img{
+        height:300px;
+    }
+
+    .sidebar-card{
+        margin-top:30px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .banner-card img{
+        height:220px;
+    }
+
+    .price{
+        font-size:1.8rem;
+    }
+
+    .detail-card .card-body{
+        padding:20px;
+    }
+
+}

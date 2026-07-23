@@ -33,12 +33,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if not allowed:
             await self.close()
             return
-
+        print("BEFORE GROUP_ADD")
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
         )
-
+        print("AFTER GROUP_ADD")
         await self.accept()
 
     async def disconnect(self, close_code):

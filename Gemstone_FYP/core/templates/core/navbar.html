@@ -73,18 +73,18 @@
                 {% if user.is_authenticated %}
 
                 <!-- Messages -->
-                <a class="nav-link"
-                    href="{% url 'chat:conversation_list' %}">
+                <a href="{% url 'chat:conversation_list' %}" class="position-relative">
 
-                        <i class="bi bi-chat-dots me-2"></i>
+                        <i class="bi bi-chat-dots"></i>
 
                         Messages
 
-                        {% if unread_count %}
+                        {% if unread_message_count > 0 %}
 
-                            <span class="badge bg-danger rounded-pill">
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 
-                                {{ unread_count }}
+                                {{ unread_message_count }}
 
                             </span>
 
