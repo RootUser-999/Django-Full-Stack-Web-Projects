@@ -136,7 +136,7 @@ New projects will continue to be added as they are completed.
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Django-Full-Stack-Web-Projects.git
+git clone https://github.com/RootUser-999/Django-Full-Stack-Web-Projects.git
 ```
 
 Navigate to any project:
