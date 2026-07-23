@@ -1,0 +1,302 @@
+# 💎 Gemstone_FYP – AI Powered Gemstone Marketplace
+
+GemVision AI is a full-stack Django web application that combines Artificial Intelligence with an online gemstone marketplace. Users can verify gemstones using an AI model, list gemstones for sale, communicate with buyers and sellers through real-time messaging, and manage their marketplace activities securely.
+
+---
+
+# 🚀 Features
+
+## 🔐 User Authentication
+
+* Custom User Model
+* User Registration
+* Email OTP Verification
+* Secure Login & Logout
+* Profile Management
+
+---
+
+## 🤖 AI Gemstone Identification
+
+* Upload gemstone images
+* TensorFlow AI model predicts gemstone type
+* Supports multiple gemstone classes
+* AI-powered verification before listing
+
+---
+
+## 🛒 Marketplace
+
+* Create gemstone listings
+* Upload multiple listing images
+* AI Verified Listings
+* Marketplace search
+* Listing detail page
+* Buyer & Seller information
+* Responsive marketplace design
+
+---
+
+## 💬 Real-Time Chat
+
+* One-to-one buyer and seller conversations
+* Django Channels
+* WebSockets
+* Redis Channel Layer
+* Instant message delivery
+* Live conversation updates
+
+---
+
+## 📸 Image Management
+
+* Media uploads
+* Multiple images per listing
+* Automatic image storage
+
+---
+
+## 🎨 Responsive UI
+
+* Modern Bootstrap interface
+* Dark theme
+* Mobile friendly
+* Professional marketplace layout
+
+---
+
+# 🛠️ Technologies Used
+
+### Backend
+
+* Python
+* Django
+* Django Channels
+* Django ORM
+* SQLite (Development)
+
+### AI
+
+* TensorFlow
+* Keras
+
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript
+
+### Real-Time Communication
+
+* Django Channels
+* Redis
+* WebSockets
+* Daphne ASGI Server
+
+---
+
+# 📂 Project Structure
+
+```text
+Gemstone_FYP/
+│
+├── accounts/
+├── chat/
+├── core/
+├── marketplace/
+├── media/
+├── model/
+├── Gemstone_FYP/
+│   ├── settings.py
+│   ├── asgi.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── manage.py
+└── requirements.txt
+```
+
+---
+
+# ⚙️ Installation
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/GemVision-AI.git
+cd GemVision-AI
+```
+
+---
+
+## 2. Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 4. Run Migrations
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+## 5. Create Superuser
+
+```bash
+python manage.py createsuperuser
+```
+
+---
+
+## 6. Start Redis
+
+Linux:
+
+```bash
+sudo systemctl start redis-server
+```
+
+Verify Redis:
+
+```bash
+redis-cli ping
+```
+
+Expected output:
+
+```text
+PONG
+```
+
+---
+
+## 7. Run the Project
+
+Start the application using Daphne (ASGI server):
+
+```bash
+daphne -b 0.0.0.0 -p 8000 Gemstone_FYP.asgi:application
+```
+
+Open your browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+# 📦 Required Services
+
+* Redis Server
+* Daphne
+* Django Channels
+* TensorFlow Model
+
+---
+
+# 🔑 Environment Variables
+
+For production, store sensitive information such as:
+
+* Django Secret Key
+* Email Password
+* Database Credentials
+
+inside a `.env` file instead of hardcoding them.
+
+---
+
+# 📷 AI Model
+
+The application uses a trained TensorFlow model located in:
+
+```text
+model/best_model.keras
+```
+
+The model predicts gemstone categories from uploaded images.
+
+---
+
+# 💬 Chat System
+
+The chat system is built using:
+
+* Django Channels
+* Redis
+* WebSockets
+* Daphne
+
+It supports:
+
+* Instant messaging
+* Buyer & seller conversations
+* Real-time updates
+
+---
+
+# 🌐 Future Improvements
+
+* PostgreSQL
+* Docker
+* Nginx
+* Celery
+* Push Notifications
+* Unread Message Indicators
+* Payment Gateway
+* Cloud Storage (AWS S3 / Cloudinary)
+* Automated Testing
+* CI/CD Pipeline
+* Production Deployment
+
+---
+
+# 📄 License
+
+This project is created for educational and portfolio purposes.
+
+---
+
+# 👨‍💻 Author
+
+**Shah Zeb Aman**
+
+Computer Science Student
+
+COMSATS University Islamabad, Abbottabad Campus
+
+GitHub: https://github.com/YOUR_USERNAME
+
+---
+
+## ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub to support the project.
