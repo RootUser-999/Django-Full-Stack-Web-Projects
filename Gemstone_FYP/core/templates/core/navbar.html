@@ -48,12 +48,7 @@
                 </li>
 
                  <!-- About -->
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="bi bi-info-circle me-2"></i>
-                        About us
-                    </a>
-                </li> 
+                
 
                 <!-- Contact -->
                 {% comment %} <li class="nav-item">
@@ -71,6 +66,11 @@
                 </li>
 
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">
+                    <i class="bi bi-person-circle me-2"></i>                            Profile
+                    </a>
+                </li> 
 
                 <!-- Messages -->
                 <a href="{% url 'chat:conversation_list' %}" class="position-relative">

@@ -1,0 +1,457 @@
+/* ===========================
+   Marketplace Hero
+=========================== */
+/* ===========================
+   Hero Statistics
+=========================== */
+
+.hero-stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:30px 20px;
+    text-align:center;
+    transition:.35s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+    background:rgba(255,255,255,.12);
+}
+
+.stat-card i{
+    font-size:2rem;
+    color:#818cf8;
+    margin-bottom:15px;
+}
+
+.stat-card h3{
+    color:#fffdfd;
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.stat-card p{
+    color:#cbd5e1;
+    margin:0;
+}
+
+@media(max-width:768px){
+
+    .hero-stats{
+        grid-template-columns:1fr;
+    }
+
+}
+.marketplace-hero{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    padding:80px 0;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+}
+
+.marketplace-hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    right:-150px;
+    top:-150px;
+    background:rgba(99,102,241,.12);
+    border-radius:50%;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    color:#a5b4fc;
+    font-size:.9rem;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.hero-title{
+    font-size:3.2rem;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+.hero-title span{
+    color:#6366f1;
+}
+
+.hero-text{
+    color:#cbd5e1;
+    font-size:1.08rem;
+    max-width:600px;
+}
+
+.create-btn{
+    padding:15px 35px;
+    border-radius:50px;
+    font-weight:700;
+    background:#6366f1;
+    border:none;
+    transition:.3s;
+}
+
+.create-btn:hover{
+    background:#4f46e5;
+    transform:translateY(-3px);
+}
+
+/* ===========================
+   Search
+=========================== */
+
+.search-box{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+}
+
+.search-box .input-group{
+    height:58px;
+}
+
+.search-box .input-group-text{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-right:none;
+}
+
+.search-box .form-control{
+    border:1px solid #e5e7eb;
+    border-left:none;
+    box-shadow:none;
+    font-size:1rem;
+}
+
+.search-box .form-control:focus{
+    border-color:#6366f1;
+}
+
+.search-box button{
+    padding:0 28px;
+}
+
+/* ===========================
+   Filters
+=========================== */
+
+.filters{
+    
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.filters .btn{
+    color:rgb(206, 205, 205);
+    border-radius:30px;
+    padding:10px 24px;
+    border:1px solid #e5e7eb;
+    transition:.3s;
+}
+
+.filters .btn:hover,
+.filters .btn.active{
+    background:#6366f1;
+    color:#fff;
+    border-color:#6366f1;
+}
+
+/* ===========================
+   Listing Cards
+=========================== */
+
+/* ===========================
+   Listing Cards
+=========================== */
+
+.listing-card{
+    background:#1e293b;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:.35s ease;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    border:1px solid #334155;
+}
+
+.listing-card:hover{
+    background:#273549;
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+}
+
+/* ===========================
+   Image
+=========================== */
+
+.listing-image{
+    position:relative;
+    height:260px;
+    overflow:hidden;
+    background:#111827;
+}
+
+.listing-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.listing-card:hover .listing-image img{
+    transform:scale(1.08);
+}
+
+/* ===========================
+   Verified Badge
+=========================== */
+
+.verify-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#10b981;
+    color:#ffffff;
+    padding:8px 15px;
+    border-radius:30px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+/* ===========================
+   Card Body
+=========================== */
+
+.listing-body{
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+}
+
+.listing-body h4{
+    font-size:1.35rem;
+    font-weight:700;
+    margin-bottom:8px;
+    color:#f8fafc;
+}
+
+.gem-name{
+    color:#818cf8;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+/* ===========================
+   Price
+=========================== */
+
+.price{
+    font-size:1.8rem;
+    font-weight:800;
+    color:#34d399;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   Details
+=========================== */
+
+.details{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    font-size:.95rem;
+    color:#cbd5e1;
+}
+
+.details div{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.details i{
+    color:#818cf8;
+}
+
+/* ===========================
+   Confidence
+=========================== */
+
+.confidence{
+    margin-bottom:25px;
+    font-size:.9rem;
+    color:#cbd5e1;
+}
+
+.confidence span{
+    float:right;
+    color:#818cf8;
+    font-weight:700;
+}
+
+/* ===========================
+   Progress Bar
+=========================== */
+
+.confidence::after{
+    content:"";
+    display:block;
+    width:100%;
+    height:8px;
+    margin-top:10px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#6366f1,#10b981);
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.card-buttons{
+    margin-top:auto;
+}
+
+.card-buttons .btn{
+    width:100%;
+    border-radius:12px;
+    padding:13px;
+    font-weight:600;
+}
+
+/* ===========================
+   Empty State
+=========================== */
+
+.empty-state{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:20px;
+    text-align:center;
+    padding:70px 30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.empty-state i{
+    font-size:70px;
+    color:#818cf8;
+    margin-bottom:20px;
+}
+
+.empty-state h3{
+    color:#f8fafc;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.empty-state p{
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
+.listing-date{
+    color:#94a3b8;
+    font-size:.9rem;
+}
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:992px){
+
+.hero-title{
+    font-size:2.6rem;
+}
+
+.listing-image{
+    height:240px;
+}
+
+}
+
+@media(max-width:768px){
+
+.marketplace-hero{
+    padding:60px 0;
+    text-align:center;
+}
+
+.hero-title{
+    font-size:2.2rem;
+}
+
+.hero-text{
+    margin:auto;
+}
+
+.create-btn{
+    width:100%;
+}
+
+.search-box{
+    background-color:lightgray;
+    padding:12px;
+}
+
+.search-box .input-group{
+    height:auto;
+}
+
+.search-box .form-control{
+    height:50px;
+}
+
+.search-box button{
+    height:50px;
+}
+
+.listing-image{
+    height:220px;
+}
+
+}
+
+@media(max-width:576px){
+
+.hero-title{
+    font-size:1.9rem;
+}
+
+.listing-body{
+    padding:18px;
+}
+
+.price{
+    font-size:1.5rem;
+}
+
+.details{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+}
+
+}
